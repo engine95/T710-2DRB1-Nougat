@@ -28,7 +28,43 @@ sizT=$(head -n 1 sizT)
 echo "Combined DT Size = $sizT Kb"
 rm -rf sizT
 
-cp /home/matt/android/rb1-kernel/arch/arm/boot/zImage /home/matt/Kernels
+echo "Cleanup AIK"
 
-cp /home/matt/android/rb1-kernel/dt.img /home/matt/Kernels
+cd /home/matt/android/N4N/Ramdisks/AIK-Linux
+
+sudo ./cleanup.sh
+
+echo "Copy Ramdisk"
+
+sudo cp -a /home/matt/android/N4N/Ramdisks/810/ramdisk/. /home/matt/android/N4N/Ramdisks/AIK-Linux/ramdisk
+
+echo "Copy split_img"
+
+sudo cp -a /home/matt/android/N4N/Ramdisks/810/split_img/. /home/matt/android/N4N/Ramdisks/AIK-Linux/split_img
+
+echo "Copy zImage"
+
+sudo cp -a /home/matt/android/N4N/arch/arm/boot/zImage /home/matt/android/N4N/Ramdisks/810/split_img/boot.img-zImage
+
+echo "Copy dt.img"
+
+sudo cp -a /home/matt/android/N4N/dt.img /home/matt/android/N4N/Ramdisks/810/split_img/boot.img-dtb
+
+echo "pack boot.img"
+
+sudo ./repackimg.sh
+
+echo "Move boot.img"
+
+cp /home/matt/android/N4N/Ramdisks/AIK-Linux/image-new.img /home/matt/android/N4N/Ramdisks/810boot.img
+
+echo -n "SEANDROIDENFORCE" >> /home/matt/android/N4N/Ramdisks/810boot.img
+
+echo "Cleanup AIK"
+
+sudo ./cleanup.sh
+
+echo "boot.img at /home/matt/android/N4N/Ramdisks/810boot.img"
+
+echo "Finished"
 
