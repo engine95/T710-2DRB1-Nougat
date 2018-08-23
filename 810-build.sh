@@ -44,11 +44,11 @@ sudo cp -a /home/matt/android/N4N/Ramdisks/810/split_img/. /home/matt/android/N4
 
 echo "Copy zImage"
 
-sudo cp -a /home/matt/android/N4N/arch/arm/boot/zImage /home/matt/android/N4N/Ramdisks/810/split_img/boot.img-zImage
+sudo cp /home/matt/android/N4N/arch/arm/boot/zImage /home/matt/android/N4N/Ramdisks/810/split_img/boot.img-zImage
 
 echo "Copy dt.img"
 
-sudo cp -a /home/matt/android/N4N/dt.img /home/matt/android/N4N/Ramdisks/810/split_img/boot.img-dtb
+sudo cp /home/matt/android/N4N/dt.img /home/matt/android/N4N/Ramdisks/810/split_img/boot.img-dtb
 
 echo "pack boot.img"
 
